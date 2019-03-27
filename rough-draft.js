@@ -1,10 +1,9 @@
 var inquirer = require('inquirer');
+var LetterConstructor = require('./letter');
 
-var myName = ('Vit').toLowerCase();
+var phraseToGuess = ('Vit').toLowerCase();
 
 var letterObjects = [];
-
-var guess;
 
 function initialRun() {
     letterObjects = [];
@@ -15,28 +14,18 @@ function initialRun() {
     }
 
     // takes a single letter and makes it an object
-    function LetterConstructor(letter) {
-        this.letter = letter;
-        this.boolean = false;
-    }
+    // function LetterConstructor(letter) {
+    //     this.letter = letter;
+    //     this.boolean = false;
+    // }
 
-    guess = new WordDestructor(myName);
-    // console.log('this, guess: ', this, guess);
-    // console.log('guess: ', guess);
+    guess = new WordDestructor(phraseToGuess);
 
     for (var i = 0; i < guess.wordArray.length; i++) {
         var oneLetterObject = new LetterConstructor(guess.wordArray[i]);
         letterObjects.push(oneLetterObject);
     }
-
-    // console.log(guess.wordArray.length);
-
-    // console.log('letterObjects: ', letterObjects);
-    // console.log('-------------------------------------');
-    // console.log('letterObjects: ', letterObjects[0]);
-
 }
-
 initialRun();
 
 
@@ -45,11 +34,11 @@ initialRun();
 
 var guessesLeft = 0;
 var guessCount = 0;
-var userGuesses = [''];
+var userGuesses = [];
 var leftToGuess = 999;
 
 function evaluateAndPrint() {
-    var blanks = [''];
+    var blanks = [];
     // set the number of allowed guesses => length of current phrase times 1.5
     guessesLeft = Math.round((letterObjects.length * 1.5) - guessCount);
     // set the number of letters to guess to current phrase character length 
@@ -78,13 +67,13 @@ function evaluateAndPrint() {
     // concatenate the 'blanks' array and print to screen
 
     console.log('\n\n\n\n\n');
+    console.log('Guess Count_____', guessCount);
+    console.log('Guesses Left____', guessesLeft);
+    console.log('leftToGuess_____', leftToGuess);
     console.log('==============================================\n');
     console.log((blanks).join(''));
     console.log('\n');
     // console.log(userGuesses.length);
-    console.log('guessesLeft: ', guessesLeft);
-    console.log('guessCount: ', guessCount);
-    console.log('leftToGuess: ', leftToGuess);
 
 }
 
@@ -113,7 +102,7 @@ function tryAgain() {
     }]).then(function (userInput) {
         if (userInput.tryAgain) {
             initialRun();
-            userGuesses = [''];
+            userGuesses = [];
             guessCount = 0;
             leftToGuess = 999;
             inquirerRun();
