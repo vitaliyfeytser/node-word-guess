@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <p>Click the button to get the sum of the numbers in the array.</p>
+    <button id="1">Try it</button>
+
+    <p>Sum of numbers in array: <span id="demo">WAITING FOR CLICK</span></p>
+
+    <script>
+        var sum = 0;
+        var numbers = [65, 44, 12, 4, 7];
+
+        function myFunction(item) {
+            sum += item;
+        }
+
+        // Get the button, and when the user clicks on it, execute myFunction
+        document.getElementById("1").onclick = function () {
+            numbers.forEach(myFunction);
+            console.log(sum);
+            demo.innerHTML = sum;
+
+        };
+    </script>
+
+</body>
+
+</html>

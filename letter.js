@@ -1,23 +1,25 @@
-
 function LetterConstructor(letter) {
     this.letter = letter;
     this.boolean = false;
 
-    this.toggler = function(char) {
-        if (this.letter === char) {
-            return this.boolean = true;
-        } else {
-            return this.boolean = false;
-        }
-    };
-
-    this.checker = function() {
-        if (this.boolean === true) {
-            return this.letter;
+    this.checker = function () {
+        if (this.letter === ' ') {
+            return "  ";
+        } else if (this.boolean === true) {
+            return this.letter + ' ';
         } else {
             return "_ ";
         }
     };
+
+    this.toggler = function (char) {
+        if (this.letter === char) {
+            return this.boolean = true;
+        // } else {
+        //     return this.boolean = false;
+        }
+    };
+
 }
 
 module.exports = LetterConstructor;
