@@ -1,22 +1,28 @@
+// THIS CONSTRUCTOR CREATES A LETTER-OBJECT WITH FOUR KEYS
 function LetterConstructor(letter) {
+    // THIS KEY HOLDS THE CHARACTER-VALUE OF THE LETTER-OBJECT
     this.letter = letter;
+    // PRESETS THE BOOLEAN VALUE OF THE LETTER-OBJECT TO FALSE TO DISPLAY AS UNDERSCORE
     this.boolean = false;
-
+    // THIS FUNCTION CHECKS THE CHARACTER-VALUE OF THE LETTER-OBJECTS AND RETURNS ONE OF THREE: 
+    // 1. DOUBLE-SPACE
+    // 2. LETTER + SPACE
+    // 3. UNDERSCORE + SPACE
     this.checker = function () {
-        if (this.letter === ' ') {
+        if (this.letter === " ") {
             return "  ";
         } else if (this.boolean === true) {
-            return this.letter + ' ';
+            return this.letter + " ";
         } else {
             return "_ ";
         }
     };
 
+    // TOGGLES THE BOOLEAN VALUE OF A LETTER-OBJECT TO TRUE IF MATCHED WITH USER GUESS
     this.toggler = function (char) {
-        if (this.letter === char) {
+        // TOGGLER FUNCTION NEGATES CAPITALIZATION WHILE COMPARING USER INPUT AND GUESS-PHRASE
+        if (this.letter.toLowerCase() === char.toLowerCase()) {
             return this.boolean = true;
-        // } else {
-        //     return this.boolean = false;
         }
     };
 
