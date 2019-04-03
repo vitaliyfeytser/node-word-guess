@@ -12,7 +12,7 @@ The WORD-GUESS game gives you a fun way to experience a cli interface of node.js
 6. Guesses are limited.
 7. Enjoy!
 
-(If you're not a fan of colored cli, run this command to disable it: `node myapp.js --no-color`.)
+(If you're not a fan of colorized cli, run this command to disable it: `node myapp.js --no-color`.)
 
 **Here's a YouTube link to my demo of this app:**
 https://youtu.be/cm664O2mdvk
