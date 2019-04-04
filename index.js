@@ -18,7 +18,7 @@ var phrasesToGuess = [
     'Doctor Strange'
 ];
 
-
+// DECLARING GLOBAL VARIABLES FOR THE GAME
 var guessesLeft = 0;
 var guessCount = 0;
 var leftToGuess = 999;
@@ -63,37 +63,25 @@ function randomSelector() {
 
 // UPDATES THE NUMBER OF NOT-GUESSED LETTERS
 function updateLeftToGuess() {
-    // console.log('newPhrase.arrayToGuess[0].letter: ', newPhrase.arrayToGuess[0].letter);
     leftToGuess = newPhrase.arrayToGuess.length;
-    // leftToGuess = 0;
     for (var m = 0; m < newPhrase.arrayToGuess.length; m++) {
         if (newPhrase.arrayToGuess[m].letter === " ") {
-            // console.log('newPhrase.arrayToGuess[m].letter', newPhrase.arrayToGuess[m].letter);
-            // console.log('We have a SPACE!');
             leftToGuess--;
         };
         if (newPhrase.arrayToGuess[m].boolean === true) {
-            // console.log('Shit is TRUE!');
             leftToGuess--;
         };
     }
-    // leftToGuess = leftToGuess - userGuesses.length;
 }
 
 // CREATES THE NEW PHRASE OBJECT AND SETS START VALUES
 function createNewPhrase() {
     userGuesses = [];
-
     randomSelector();
     newPhrase = new phraseObj(currentPhraseToGuess, userGuesses);
     newPhrase.phraseArray();
     // GUESSES ALLOWED ARE DERIVED AS 1.5 TIMES THE PHRASE CHARACTER COUNT (THIS IS ARBITRARY - SEEMED LIKE A GOOD FIT)
     guessesLeft = Math.round((currentPhraseToGuess.length * 1.5));
-
-    // console.log('==============================================\n');
-    // console.log('newPhrase: ', newPhrase);
-    // console.log('==============================================\n');
-
     newPhrase.arrayToggler();
     updateLeftToGuess();
 }
@@ -109,18 +97,13 @@ function statusDisplay() {
     console.log(colors.gray('| Left To Guess___%s '), leftToGuess);
     console.log('-----------------------'.gray);
     console.log('\nGuess this Marvel Movie Title: \n'.yellow);
-
     console.log(newPhrase.arrayToggler().green);
     console.log('\nYour guesses so far:'.gray);
     console.log(userGuesses.join(' ').toUpperCase().green);
-    // var name = 'Marak';
-    // console.log(colors.green('Hello %s'), name);
-    // // outputs -> 'Hello Marak'
 }
 
 // RUNS THE PROMPT FUNCTION OF INQUIRER.JS TO COLLECT USER GUESS INPUT
 function runGuess() {
-
     inquirer.prompt([{
         type: 'input',
         name: 'userGuess',
@@ -170,12 +153,6 @@ function tryAgain() {
             userGuesses = [];
             guessCount = 0;
             leftToGuess = 999;
-            // EVALUATES IF THE USER HAS ITIRATED THROUGH ALL AVAILABLE GUESS-PHRASES, IF TRUE, REFILLS ARRAY ANEW
-            // if (allPhrasesIndeces[0] === null) {
-            //     refillAllPhraseIndeces();
-            //     createNewPhrase();
-            //     inquirerRun();
-            // } else {
             createNewPhrase();
             inquirerRun();
             // }
@@ -186,11 +163,9 @@ function tryAgain() {
 // SUCCESS ANNOUNCEMENT AND PROMPT FOR A NEW ROUND
 function youWon() {
     statusDisplay();
-
     console.log('================================='.america)
     console.log('\nCongrats! You guessed correctly!\n'.inverse)
     console.log('================================='.america)
-
     tryAgain();
 }
 
@@ -200,10 +175,6 @@ function inquirerRun() {
         updateLeftToGuess();
         statusDisplay();
         runGuess();
-    } else if (guessCount === Math.round((currentPhraseToGuess.length * 1.5)) || leftToGuess !== 0) {
-        updateLeftToGuess();
-        statusDisplay();
-        tryAgain();
     } else {
         updateLeftToGuess();
         statusDisplay();
