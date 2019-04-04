@@ -48,15 +48,10 @@ function randomSelector() {
     }
     // choose a random index from allPhraseIndeces
     var getRandom = Math.floor(Math.random() * allPhrasesIndeces.length);
-    // console.log('getRandom', getRandom);
-
     // set currentPhraseToGuess to selected random phrase index
     currentPhraseToGuess = phrasesToGuess[allPhrasesIndeces[getRandom]];
-    // console.log('currentPhraseToGuess: ', currentPhraseToGuess);
-
     // remove the phrase index after using it (to avoid repetition)
     allPhrasesIndeces.splice(getRandom, 1);
-    // console.log('allPhrasesIndeces', allPhrasesIndeces);
 }
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
@@ -134,7 +129,7 @@ function runGuess() {
             // IF EVERYTHING HAS BEEN GUESSED CORRECTLY ANNOUNCES VICTORY
             youWon();
         } else {
-            // 
+            // RUNS ANOTHER INQUIRER PROMPT
             inquirerRun();
         }
     });
@@ -155,7 +150,6 @@ function tryAgain() {
             leftToGuess = 999;
             createNewPhrase();
             inquirerRun();
-            // }
         }
     });
 }
